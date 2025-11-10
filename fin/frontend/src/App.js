@@ -1,0 +1,238 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './contexts/AuthContext';
+import { ChatProvider } from './contexts/ChatContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
+import AdminNavbar from './components/AdminNavbar';
+import ChatMessageModal from './components/ChatMessageModal';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import Dashboard from './pages/EnhancedDashboard';
+import Services from './pages/Services';
+import ServicesWithMap from './pages/ServicesWithMap';
+import ServiceDetail from './pages/ServiceDetail';
+import Profile from './pages/Profile';
+import Chat from './pages/Chat';
+import CreateService from './pages/CreateService';
+import EditService from './pages/EditService';
+import MyServices from './pages/MyServices';
+import BookService from './pages/BookService';
+import BookingConfirmation from './pages/BookingConfirmation';
+import Bookings from './pages/Bookings';
+import CreateReview from './pages/CreateReview';
+import AdminProviders from './pages/AdminProviders';
+import AdminDisputes from './pages/AdminDisputes';
+import AdminLogin from './pages/AdminLogin';
+import AdminRegister from './pages/AdminRegister';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminUsers from './pages/AdminUsers';
+import AdminServices from './pages/AdminServices';
+import AdminInsights from './pages/AdminInsights';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Refund from './pages/Refund';
+
+const queryClient = new QueryClient();
+
+// Layout wrapper to conditionally show Navbar based on user role
+const LayoutWrapper = ({ children }) => {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+  const isChatRoute = location.pathname === '/chat' || location.pathname.startsWith('/chat/');
+  
+  return (
+    <>
+      {/* Show AdminNavbar only on /chat route for admin users (admin pages have their own headers) */}
+      {isChatRoute && <AdminNavbar />}
+      
+      {/* Show regular Navbar only for non-admin, non-chat routes */}
+      {!isAdminRoute && !isChatRoute && <Navbar />}
+      
+      {children}
+      {!isAdminRoute && !isChatRoute && <ChatMessageModal />}
+      {/* Show footer on all non-admin routes */}
+      {!isAdminRoute && <Footer />}
+    </>
+  );
+};
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ChatProvider>
+          <Router>
+            <div className="App">
+              <LayoutWrapper>
+                <main className="min-h-screen bg-gray-50">
+                <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/admin" element={<AdminLogin />} />
+                <Route path="/admin-register" element={<AdminRegister />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/services-map" element={<ServicesWithMap />} />
+                <Route path="/services/:id" element={<ServiceDetail />} />
+                <Route 
+                  path="/dashboard" 
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/profile" 
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/chat" 
+                  element={
+                    <ProtectedRoute>
+                      <Chat />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/chat/:userId" 
+                  element={
+                    <ProtectedRoute>
+                      <Chat />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/create-service" 
+                  element={
+                    <ProtectedRoute>
+                      <CreateService />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/edit-service/:id" 
+                  element={
+                    <ProtectedRoute>
+                      <EditService />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/my-services" 
+                  element={
+                    <ProtectedRoute>
+                      <MyServices />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/book/:serviceId" 
+                  element={
+                    <ProtectedRoute>
+                      <BookService />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/booking-confirmation/:bookingId" 
+                  element={
+                    <ProtectedRoute>
+                      <BookingConfirmation />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/bookings" 
+                  element={
+                    <ProtectedRoute>
+                      <Bookings />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/review/:bookingId" 
+                  element={
+                    <ProtectedRoute>
+                      <CreateReview />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route
+                  path="/admin/providers"
+                  element={
+                    <ProtectedRoute adminOnly={true}>
+                      <AdminProviders />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/disputes"
+                  element={
+                    <ProtectedRoute adminOnly={true}>
+                      <AdminDisputes />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/users"
+                  element={
+                    <ProtectedRoute adminOnly={true}>
+                      <AdminUsers />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/services"
+                  element={
+                    <ProtectedRoute adminOnly={true}>
+                      <AdminServices />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route
+                  path="/admin/dashboard"
+                  element={
+                    <ProtectedRoute adminOnly={true}>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/insights"
+                  element={
+                    <ProtectedRoute adminOnly={true}>
+                      <AdminInsights />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/refund" element={<Refund />} />
+              </Routes>
+              </main>
+            </LayoutWrapper>
+            <Toaster position="top-right" />
+          </div>
+        </Router>
+        </ChatProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
