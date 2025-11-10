@@ -106,25 +106,25 @@ REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 
 ## 📋 Development Roadmap
 
-### Authentication & Basic Setup ✅
+### Authentication & Basic Setup 
 - [x] JWT authentication system
 - [x] User registration and login
 - [x] Role-based routing
 - [x] Basic project structure
 
-### Service Listings & Search (Week 3-4)
+### Service Listings & Search 
 - Service CRUD operations
 - Category and subcategory system
 - Location-based search
 - Google Maps integration
 
-### Booking & Interaction (Week 5-6)
+### Booking & Interaction 
 - Booking system with time slots
 - Real-time chat with WebSockets
 - Review and rating system
 - Notification system
 
-### Admin Panel & Enhancement (Week 7-8)
+### Admin Panel & Enhancement 
 - Admin dashboard
 - Provider verification system
 - Dispute management
