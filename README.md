@@ -106,42 +106,36 @@ REACT_APP_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 
 ## 📋 Development Roadmap
 
-### Milestone 1: Authentication & Basic Setup ✅
+### Authentication & Basic Setup ✅
 - [x] JWT authentication system
 - [x] User registration and login
 - [x] Role-based routing
 - [x] Basic project structure
 
-### Milestone 2: Service Listings & Search (Week 3-4)
-- [x] Service CRUD operations
-- [x] Category and subcategory system
-- [x] Location-based search
-- [x] Google Maps integration
+### Service Listings & Search (Week 3-4)
+- Service CRUD operations
+- Category and subcategory system
+- Location-based search
+- Google Maps integration
 
-### Milestone 3: Booking & Interaction (Week 5-6)
-- [x] Booking system with time slots
-- [x] Real-time chat with WebSockets
-- [x] Review and rating system
-- [x] Notification system
+### Booking & Interaction (Week 5-6)
+- Booking system with time slots
+- Real-time chat with WebSockets
+- Review and rating system
+- Notification system
 
-### Milestone 4: Admin Panel & Enhancement (Week 7-8)
-- [x] Admin dashboard
-- [x] Provider verification system
-- [x] Dispute management
-- [x] Analytics and reporting
+### Admin Panel & Enhancement (Week 7-8)
+- Admin dashboard
+- Provider verification system
+- Dispute management
+- Analytics and reporting
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License.
+1. Commit your changes
+2. Push to the branch
+3. Create a Pull Request
 
 ## 📧 Contact
 
-For questions or support, please contact the development teem.
+For questions or support, please contact tanvidogmane@gmail.com.
